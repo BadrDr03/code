@@ -1,0 +1,75 @@
+class Bank {
+    private String name;
+
+    Bank(String name) {
+        this.name = name;
+    }
+
+    public String getBankName() {
+        return this.name;
+    }
+}
+
+class Customer {
+    private String name;
+    private Account account;
+
+    Customer(String name, Account account) {
+        this.name = name;
+        this.account = account;
+    }
+
+    public String getCustomerName() {
+        return this.name;
+    }
+
+    public Account getAccount() {
+        return this.account;
+    }
+}
+
+class Account {
+    private int accountNumber;
+    private double balance;
+
+    Account(int accountNumber, double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Amount deposited successfully. Current Balance: " + balance);
+        } else {
+            System.out.println("Invalid amount. Please enter a positive number.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            System.out.println("Amount withdrawn successfully. Current Balance: " + balance);
+        } else {
+            System.out.println("Insufficient balance.");
+        }
+    }
+
+    public void displayAccountDetails() {
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Balance: " + balance);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Bank bank = new Bank("Copilot Bank");
+        Account account = new Account(123456, 500.0);
+        Customer customer = new Customer("John Doe", account);
+
+        System.out.println("Welcome to " + bank.getBankName());
+        System.out.println("Customer Name: " + customer.getCustomerName());
+        customer.getAccount().displayAccountDetails();
+
+        // Deposit money
+        customer.getAccount().deposit(300.
